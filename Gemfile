@@ -62,3 +62,4 @@ gem 'kaminari'
 gem 'ransack'
 gem 'activestorage'
 gem 'acts-as-taggable-on'
+
