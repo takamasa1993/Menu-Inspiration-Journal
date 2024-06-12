@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to root_path, class: 'navbar-brand' do %>
+    <i class="fas fa-carrot"></i> 栄養士
+  <% end %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <!-- ユーザーログイン後 -->
+        <li class="nav-item">
+          <%= link_to user_path(current_user), class: 'nav-link' do %>
+            <i class="fas fa-user"></i> マイページ
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to posts_path, class: 'nav-link' do %>
+            <i class="fas fa-list"></i> 投稿一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_post_path, class: 'nav-link' do %>
+            <i class="fas fa-plus"></i> 新規投稿
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+            <i class="fas fa-sign-out-alt"></i> ログアウト
+          <% end %>
+        </li>
+      <% else %>
+        <!-- ユーザーログイン前 -->
+        <li class="nav-item">
+          <%= link_to about_path, class: 'nav-link' do %>
+            <i class="fas fa-info-circle"></i> アバウト
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_session_path, class: 'nav-link' do %>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_registration_path, class: 'nav-link' do %>
+            <i class="fas fa-user-plus"></i> 新規登録
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if admin_signed_in? %>
+        <!-- 管理者ログイン後 -->
+        <li class="nav-item">
+          <%= link_to admin_users_path, class: 'nav-link' do %>
+            <i class="fas fa-users-cog"></i> ユーザー管理画面
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_genres_path, class: 'nav-link' do %>
+            <i class="fas fa-tags"></i> ジャンル
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_ingredients_path, class: 'nav-link' do %>
+            <i class="fas fa-seedling"></i> 新材料提案管理
+          <% end %>
+        </li>
+      <% else %>
+        <!-- 管理者ログイン前 -->
+        <li class="nav-item">
+          <%= link_to new_admin_session_path, class: 'nav-link' do %>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
