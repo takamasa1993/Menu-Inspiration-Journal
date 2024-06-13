@@ -1,2 +1,69 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container mt-5">
+  <div class="row">
+    <!-- サイドバー：ジャンル検索 -->
+    <div class="col-md-3">
+      <h3>ジャンル検索</h3>
+      <ul class="list-group">
+        <li class="list-group-item">ケーキ</li>
+        <li class="list-group-item">焼き菓子</li>
+        <li class="list-group-item">プリン</li>
+        <li class="list-group-item">キャンディ</li>
+      </ul>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="col-md-9">
+      <!-- 給食画像とテキスト -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <img src="<%= asset_path('top-kyusyoku.png') %>" alt="LOGO" class="img-fluid" style="max-width: 50%;">
+          <p class="mt-4">
+            ようこそ、なかのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。
+          </p>
+        </div>
+      </div>
+
+      <!-- 新着商品 -->
+      <div class="row mt-4">
+        <h3 class="col-12">新着商品</h3>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <div class="card-body">
+              <h5 class="card-title">商品名</h5>
+              <p class="card-text">¥0,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <div class="card-body">
+              <h5 class="card-title">商品名</h5>
+              <p class="card-text">¥0,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <div class="card-body">
+              <h5 class="card-title">商品名</h5>
+              <p class="card-text">¥0,000</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <div class="card-body">
+              <h5 class="card-title">商品名</h5>
+              <p class="card-text">¥0,000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

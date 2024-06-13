@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
+
+
   resources :users, only: [:show, :edit, :update, :destroy] do
     collection do
       get 'my_page', to: 'users#show'
