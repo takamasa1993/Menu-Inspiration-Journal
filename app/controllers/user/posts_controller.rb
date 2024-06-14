@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class User::PostsController < ApplicationController
   def new
   end
 

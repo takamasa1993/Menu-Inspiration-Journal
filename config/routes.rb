@@ -1,39 +1,42 @@
 Rails.application.routes.draw do
-  
-  root 'homes#top'
-
-  get 'about', to: 'homes#about', as: 'about'
+  root 'user/homes#top'
 
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    registrations: 'user/registrations',
+    sessions: 'user/sessions',
+    passwords: 'user/passwords'
   }
 
-  devise_for :admins, controllers: {
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: 'admins/sessions'
   }
 
+  scope module: :user do
+    get 'about', to: 'homes#about', as: 'about'
 
-  resources :users, only: [:show, :edit, :update, :destroy] do
-    collection do
-      get 'my_page', to: 'users#show'
-      get 'information/edit', to: 'users#edit'
-      patch 'information', to: 'users#update'
-      get 'unsubscribe', to: 'users#unsubscribe'
-      patch 'withdraw', to: 'users#withdraw'
+    resources :homes
+
+    resources :users, only: [:show, :edit, :update, :destroy] do
+      collection do
+        get 'my_page', to: 'users#show'
+        get 'information/edit', to: 'users#edit'
+        patch 'information', to: 'users#update'
+        get 'unsubscribe', to: 'users#unsubscribe'
+        patch 'withdraw', to: 'users#withdraw'
+      end
+      member do
+        post 'follow', to: 'follows#create'
+        delete 'unfollow', to: 'follows#destroy'
+      end
     end
-    member do
-      post 'follow', to: 'follows#create'
-      delete 'unfollow', to: 'follows#destroy'
+
+    resources :posts do
+      resource :likes, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
-  end
 
-  resources :posts do
-    resource :likes, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :searches, only: [:index]
   end
-
-  resources :searches, only: [:index]
 
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update, :destroy]

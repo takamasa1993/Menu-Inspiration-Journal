@@ -1,0 +1,24 @@
+<% provide(:title, 'パスワードを忘れた場合') %>
+
+<div class='container'>
+  <div class="row justify-content-center">
+    <div class='col-10 py-5 center-block'>
+      <h4 class="mb-4">パスワードをお忘れの方</h4>
+      <h6 class="col-10">ご登録のメールアドレスを入力してください。パスワードリセットの案内をお送りします。</h6>
+
+      <%= form_with model: resource, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' } do |f| %>
+        <table class="table table-borderless table align-middle offset-1 col-8">
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, size: "40", autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: 'form-control' %></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td><%= f.submit "パスワードをリセットする", class: "btn btn-primary" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
