@@ -16,7 +16,7 @@
       <!-- 給食画像とテキスト -->
       <div class="row">
         <div class="col-12 text-center">
-          <img src="<%= asset_path('top-kyusyoku.png') %>" alt="LOGO" class="img-fluid" style="max-width: 50%;">
+          <%= image_tag 'top-kyusyoku.png', alt: 'LOGO', class: 'img-fluid', style: 'max-width: 50%;' %>
           <p class="mt-4">
             ようこそ、なかのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。
@@ -29,7 +29,7 @@
         <h3 class="col-12">新着商品</h3>
         <div class="col-md-3">
           <div class="card">
-            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <%= image_tag 'path/to/image4.png', class: 'card-img-top', alt: '商品名' %>
             <div class="card-body">
               <h5 class="card-title">商品名</h5>
               <p class="card-text">¥0,000</p>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <%= image_tag 'path/to/image4.png', class: 'card-img-top', alt: '商品名' %>
             <div class="card-body">
               <h5 class="card-title">商品名</h5>
               <p class="card-text">¥0,000</p>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <%= image_tag 'path/to/image4.png', class: 'card-img-top', alt: '商品名' %>
             <div class="card-body">
               <h5 class="card-title">商品名</h5>
               <p class="card-text">¥0,000</p>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-3">
           <div class="card">
-            <img src="path/to/image4.png" class="card-img-top" alt="商品名">
+            <%= image_tag 'path/to/image4.png', class: 'card-img-top', alt: '商品名' %>
             <div class="card-body">
               <h5 class="card-title">商品名</h5>
               <p class="card-text">¥0,000</p>
