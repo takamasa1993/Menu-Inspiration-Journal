@@ -1,0 +1,49 @@
+<% provide(:title, 'ユーザー情報編集') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">ユーザー情報編集</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with(model: @user, local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :name, "名前", class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-9">
+            <%= f.text_field :name, class: 'form-control', autofocus: true, placeholder: "令和太郎" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :nickname, "ニックネーム", class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-9">
+            <%= f.text_field :nickname, class: 'form-control', placeholder: "レイ君" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :email, "メールアドレス", class: 'col-sm-3 col-form-label' %>
+          <div class="col-sm-9">
+            <%= f.email_field :email, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row mt-3">
+          <div class="col-sm-9 offset-sm-3">
+            <%= f.submit "更新", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+      
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger mt-3">
+          <h4>エラーが発生しました:</h4>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
