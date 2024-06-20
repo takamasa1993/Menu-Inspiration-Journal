@@ -1,0 +1,79 @@
+ja:
+  activerecord:
+    models:
+      post: "投稿"
+    attributes:
+      post:
+        menu_title: "料理名"
+        genre: "ジャンル"
+        energy: "エネルギー"
+        protein: "タンパク質"
+        fat: "脂質"
+        calcium: "カルシウム"
+        iron: "鉄"
+        zinc: "亜鉛"
+        vitamin_a: "ビタミンA"
+        vitamin_b1: "ビタミンB1"
+        vitamin_b2: "ビタミンB2"
+        vitamin_c: "ビタミンC"
+        dietary_fiber: "食物繊維"
+        salt: "食塩"
+        notes: "その他の情報"
+    errors:
+      models:
+        post:
+          attributes:
+            menu_title:
+              blank: "を入力してください"
+            genre:
+              blank: "を選択してください"
+            energy:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            protein:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            fat:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            calcium:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            iron:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            zinc:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            vitamin_a:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            vitamin_b1:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            vitamin_b2:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            vitamin_c:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            dietary_fiber:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            salt:
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
+              greater_than_or_equal_to: "は0以上の数値で入力してください"
+            notes:
+              too_long: "は500文字以内で入力してください"

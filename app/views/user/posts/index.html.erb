@@ -1,2 +1,22 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<!-- app/views/user/posts/index.html.erb -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4">投稿一覧</h2>
+
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-3 mb-3">
+        <div class="card text-center">
+          <% if post.image.attached? %>
+            <div class="post-image-wrapper">
+              <%= image_tag post.image.variant(resize_to_fit: [200, 200]), class: "post-image" %>
+            </div>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.menu_title %></h5>
+            <%= link_to '詳細', post_path(post), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

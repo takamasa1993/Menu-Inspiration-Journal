@@ -1,2 +1,88 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<% provide(:title, @post.menu_title) %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4"><%= @post.menu_title %></h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <% if @post.image.attached? %>
+            <div class="text-center mb-4">
+              <%= image_tag @post.image.variant(resize: "600x400"), class: 'img-fluid' %>
+            </div>
+          <% end %>
+
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>ジャンル</th>
+                  <td><%= @post.genre.name %></td>
+                </tr>
+                <tr>
+                  <th>エネルギー (kcal)</th>
+                  <td><%= @post.energy %></td>
+                </tr>
+                <tr>
+                  <th>タンパク質 (g)</th>
+                  <td><%= @post.protein %></td>
+                </tr>
+                <tr>
+                  <th>脂質 (g)</th>
+                  <td><%= @post.fat %></td>
+                </tr>
+                <tr>
+                  <th>カルシウム (mg)</th>
+                  <td><%= @post.calcium %></td>
+                </tr>
+                <tr>
+                  <th>鉄 (mg)</th>
+                  <td><%= @post.iron %></td>
+                </tr>
+                <tr>
+                  <th>亜鉛 (mg)</th>
+                  <td><%= @post.zinc %></td>
+                </tr>
+                <tr>
+                  <th>ビタミンA (μg)</th>
+                  <td><%= @post.vitamin_a %></td>
+                </tr>
+                <tr>
+                  <th>ビタミンB1 (mg)</th>
+                  <td><%= @post.vitamin_b1 %></td>
+                </tr>
+                <tr>
+                  <th>ビタミンB2 (mg)</th>
+                  <td><%= @post.vitamin_b2 %></td>
+                </tr>
+                <tr>
+                  <th>ビタミンC (mg)</th>
+                  <td><%= @post.vitamin_c %></td>
+                </tr>
+                <tr>
+                  <th>食物繊維 (g)</th>
+                  <td><%= @post.dietary_fiber %></td>
+                </tr>
+                <tr>
+                  <th>食塩 (g)</th>
+                  <td><%= @post.salt %></td>
+                </tr>
+                <tr>
+                  <th>その他の情報</th>
+                  <td><%= simple_format @post.notes %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="text-center mt-4">
+            <%= link_to '編集', edit_post_path(@post), class: 'btn btn-secondary' %>
+            <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+            <%= link_to '戻る', posts_path, class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_14_063419) do
+ActiveRecord::Schema.define(version: 2024_06_20_150313) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,36 @@ ActiveRecord::Schema.define(version: 2024_06_14_063419) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "genre_id", null: false
+    t.string "menu_title"
+    t.float "energy"
+    t.float "protein"
+    t.float "fat"
+    t.float "calcium"
+    t.float "iron"
+    t.float "zinc"
+    t.float "vitamin_a"
+    t.float "vitamin_b1"
+    t.float "vitamin_b2"
+    t.float "vitamin_c"
+    t.float "dietary_fiber"
+    t.float "salt"
+    t.text "notes"
+    t.boolean "is_public"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_posts_on_genre_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -68,4 +98,6 @@ ActiveRecord::Schema.define(version: 2024_06_14_063419) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "genres"
+  add_foreign_key "posts", "users"
 end
