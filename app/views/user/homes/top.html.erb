@@ -29,38 +29,18 @@
       <!-- 新着商品 -->
       <div class="row mt-4">
         <h3 class="col-12">新着メニュー</h3>
-        <div class="col-md-3">
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">料理名（仮）</h5>
+        <% @latest_posts.each do |post| %>
+          <div class="col-md-3">
+            <div class="card text-center">
+              <% if post.image.attached? %>
+                <%= image_tag post.image.variant(resize_to_fit: [100, 100]), class: "card-img-top mx-auto" %>
+              <% end %>
+              <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                <h5 class="card-title"><%= post.menu_title %></h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">料理名（仮）</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">料理名（仮）</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">料理名（仮）</h5>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
