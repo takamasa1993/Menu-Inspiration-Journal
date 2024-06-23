@@ -1,6 +1,7 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -44,7 +45,13 @@ class User::PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
-
+  
+  def correct_user
+    unless @post.user == current_user
+      redirect_to posts_path, alert: '他人の投稿は編集・削除できません。'
+    end
+  end
+  
   def post_params
     params.require(:post).permit(:menu_title, :genre_id, :image, :energy, :protein, :fat, :calcium, :iron, :zinc, :vitamin_a, :vitamin_b1, :vitamin_b2, :vitamin_c, :dietary_fiber, :salt, :notes)
   end
