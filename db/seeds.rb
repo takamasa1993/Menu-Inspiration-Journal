@@ -5,8 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# 初期ジャンルの作成
 Genre.create(name: '主菜')
 Genre.create(name: '副菜')
 Genre.create(name: 'デザート')
 Genre.create(name: 'スープ')
 Genre.create(name: 'その他')
+
+# 管理者アカウントの作成
+unless Admin.find_by(email: 'admin@example.com')
+  Admin.create!(
+    email: 'admin@example.com',
+    password: 'securepassword',
+    password_confirmation: 'securepassword'
+  )
+end

@@ -1,0 +1,38 @@
+<!-- app/views/admin/dashboard/index.html.erb -->
+<h1>管理者ダッシュボード</h1>
+<p>ここでは管理者としての操作を行えます。</p>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">ユーザー管理画面</h5>
+          <p class="card-text">サイトのユーザーを管理します。</p>
+          <%= link_to 'ユーザー管理', admin_users_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">ジャンル編集画面</h5>
+          <p class="card-text">サイトのジャンルを編集します。</p>
+          <%= link_to 'ジャンル編集', admin_genres_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">新材料提案管理画面</h5>
+          <p class="card-text">ユーザーからの新しい材料提案を管理します。</p>
+          <%= link_to '新材料提案管理', admin_ingredients_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,11 @@
 class ApplicationController < ActionController::Base
-  
-   protect_from_forgery with: :exception
+  protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :admin_signed_in?, :current_admin
-  
-  
-  private
+  protected
 
-  def admin_signed_in?
-    !current_admin.nil?
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
-
-  def current_admin
-    @current_admin ||= Admin.find_by(id: session[:admin_id])
-  end
-  
 end

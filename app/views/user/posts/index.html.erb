@@ -4,19 +4,29 @@
 
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="col-md-2 mb-2">
-        <div class="card text-center">
-          <% if post.image.attached? %>
-            <div class="post-image-wrapper">
-              <%= image_tag post.image.variant(resize_to_fit: [200, 200]), class: "post-image" %>
+      <% if post.is_public %>
+        <div class="col-md-2 mb-2">
+          <div class="card text-center">
+            <% if post.image.attached? %>
+              <div class="post-image-wrapper">
+                <%= image_tag post.image.variant(resize_to_fit: [200, 200]), class: "post-image" %>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.menu_title %></h5>
+              <p>いいねの合計数: <span id="like-count-<%= post.id %>"><%= post.likes.count %></span></p>
+              <% if current_user.likes.exists?(post: post) %>
+                <%= link_to 'いいねを取り消す', post_likes_path(post), method: :delete, remote: true, class: 'btn btn-danger', data: { disable_with: '処理中...' }, data: { turbo: false } %>
+              <% else %>
+                <%= link_to 'いいね', post_likes_path(post), method: :post, remote: true, class: 'btn btn-primary', data: { disable_with: '処理中...' }, data: { turbo: false } %>
+              <% end %>
+              <%= link_to '詳細', post_path(post), class: 'btn btn-secondary' %>
             </div>
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= post.menu_title %></h5>
-            <%= link_to '詳細', post_path(post), class: 'btn btn-primary' %>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
+
+<%= javascript_pack_tag 'like_post' %>

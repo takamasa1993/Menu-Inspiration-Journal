@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'user/homes#top'
 
   devise_for :users, controllers: {
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
-    sessions: 'admins/sessions'
+    sessions: 'admin/sessions'
   }
 
   scope module: :user do
@@ -39,7 +40,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    get 'dashboard/index'
+    resources :posts, only: [:show] do
+      resources :comments, only: [:destroy]
+    end
+
+    root to: 'dashboard#index'
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      resources :posts, only: [:index, :show, :edit, :update, :destroy]
+    end
     resources :genres, except: [:show]
     resources :ingredients, only: [:index, :show, :update]
   end

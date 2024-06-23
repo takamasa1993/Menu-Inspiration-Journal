@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
   has_one_attached :image
 
   validates :menu_title, presence: true
@@ -19,4 +21,6 @@ class Post < ApplicationRecord
   validates :dietary_fiber, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :salt, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :notes, length: { maximum: 500 }
+  
+
 end
