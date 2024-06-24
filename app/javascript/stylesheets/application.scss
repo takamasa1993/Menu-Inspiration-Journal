@@ -4,3 +4,23 @@
 @import "user/users";
 @import "user/homes";
 
+@media (min-width: 992px) {
+  .mt-lg-override {
+    margin-top: 1rem !important;
+  }
+}
+
+header .navbar-nav {
+  flex-direction: row;
+}
+
+header .navbar-collapse {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+header .navbar-toggler {
+  margin-left: auto;
+}
+
