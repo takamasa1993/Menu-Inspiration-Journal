@@ -4,10 +4,11 @@
     <div class="col-md-3">
       <h3>ジャンル検索</h3>
       <ul class="list-group">
-        <li class="list-group-item">主菜</li>
-        <li class="list-group-item">副菜</li>
-        <li class="list-group-item">汁</li>
-        <li class="list-group-item">その他</li>
+        <% @genres.each do |genre| %>
+          <li class="list-group-item">
+            <%= link_to genre.name, genre_posts_path(genre) %>
+          </li>
+        <% end %>
       </ul>
     </div>
 
@@ -37,6 +38,7 @@
               <% end %>
               <div class="card-body d-flex flex-column justify-content-center align-items-center">
                 <h5 class="card-title"><%= post.menu_title %></h5>
+                <%= link_to '詳細', post_path(post), class: 'btn btn-primary' %>
               </div>
             </div>
           </div>

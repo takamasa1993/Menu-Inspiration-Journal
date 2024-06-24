@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     end
 
     resources :searches, only: [:index]
+    
+    get 'genres/:id/posts', to: 'posts#by_genre', as: 'genre_posts'
   end
 
   namespace :admin do
@@ -51,5 +53,6 @@ Rails.application.routes.draw do
     end
     resources :genres, except: [:show]
     resources :ingredients, only: [:index, :show, :update]
+    get 'genres/:id/posts', to: 'posts#by_genre', as: 'admin_genre_posts'
   end
 end

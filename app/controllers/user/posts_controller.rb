@@ -40,6 +40,12 @@ class User::PostsController < ApplicationController
     redirect_to posts_path, notice: 'レシピが削除されました。'
   end
 
+  def by_genre
+    @genre = Genre.find(params[:id])
+    @posts = @genre.posts
+  end
+
+
   private
 
   def set_post
