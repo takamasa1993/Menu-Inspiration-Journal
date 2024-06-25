@@ -45,7 +45,12 @@
             </li>
             <li class="nav-item">
               <%= link_to admin_ingredients_path, class: 'nav-link border p-2 mx-1' do %>
-                <i class="fas fa-seedling"></i> 新材料提案管理
+                <i class="fas fa-seedling"></i> 登録済み材料
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_new_ingredient_proposals_path, class: 'nav-link border p-2 mx-1' do %>
+                <i class="fas fa-file-alt"></i> 新材料提案管理
               <% end %>
             </li>
             <li class="nav-item">

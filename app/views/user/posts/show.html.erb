@@ -69,6 +69,16 @@
                   <td><%= @post.salt %></td>
                 </tr>
                 <tr>
+                  <th>材料</th>
+                  <td>
+                    <ul>
+                      <% @post.post_ingredients.each do |post_ingredient| %>
+                        <li><%= post_ingredient.ingredient.name %> - <%= post_ingredient.quantity %></li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
                   <th>その他の情報</th>
                   <td><%= simple_format @post.notes %></td>
                 </tr>

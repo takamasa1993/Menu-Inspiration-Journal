@@ -1,20 +1,49 @@
-<!-- app/views/admin/ingredients/index.html.erb -->
-<h1>新材料提案管理画面</h1>
-<p>ここではユーザーから提案された新しい材料を管理できます。</p>
+<% provide(:title, '材料管理') %>
 
 <div class="container mt-5">
-  <div class="row">
-    <% @ingredients.each do |ingredient| %>
-      <div class="col-md-4 mb-3">
-        <div class="card text-center">
-          <div class="card-body">
-            <h5 class="card-title"><%= ingredient.name %></h5>
-            <%= link_to '詳細', admin_ingredient_path(ingredient), class: 'btn btn-secondary' %>
-            <%= link_to '編集', edit_admin_ingredient_path(ingredient), class: 'btn btn-secondary' %>
-            <%= link_to '削除', admin_ingredient_path(ingredient), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
-          </div>
-        </div>
+  <h2 class="text-center mb-4">材料管理</h2>
+
+  <%= form_with(model: @ingredient, url: admin_ingredients_path, local: true) do |form| %>
+    <% if @ingredient.errors.any? %>
+      <div class="alert alert-danger">
+        <h4>エラーが発生しました：</h4>
+        <ul>
+          <% @ingredient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-  </div>
+    <div class="form-group row">
+      <%= form.label :name, '新規材料名', class: 'col-sm-3 col-form-label' %>
+      <div class="col-sm-7">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.submit '登録', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>材料名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ingredients.each do |ingredient| %>
+        <tr>
+          <td><%= ingredient.id %></td>
+          <td><%= ingredient.name %></td>
+          <td>
+            <%= link_to '編集', edit_admin_ingredient_path(ingredient), class: 'btn btn-secondary btn-sm' %>
+            <%= link_to '削除', admin_ingredient_path(ingredient), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -1,0 +1,28 @@
+<% provide(:title, '材料編集') %>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">材料編集</h2>
+
+  <%= form_with(model: @ingredient, url: admin_ingredient_path(@ingredient), method: :patch, local: true) do |form| %>
+    <% if @ingredient.errors.any? %>
+      <div class="alert alert-danger">
+        <h4>エラーが発生しました：</h4>
+        <ul>
+          <% @ingredient.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group row">
+      <%= form.label :name, '材料名', class: 'col-sm-3 col-form-label' %>
+      <div class="col-sm-7">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.submit '更新', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_23_072713) do
+ActiveRecord::Schema.define(version: 2024_06_25_101812) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 2024_06_23_072713) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ingredients", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
@@ -75,6 +81,25 @@ ActiveRecord::Schema.define(version: 2024_06_23_072713) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "new_ingredient_proposals", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_new_ingredient_proposals_on_user_id"
+  end
+
+  create_table "post_ingredients", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "ingredient_id", null: false
+    t.string "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_post_ingredients_on_ingredient_id"
+    t.index ["post_id"], name: "index_post_ingredients_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -121,6 +146,9 @@ ActiveRecord::Schema.define(version: 2024_06_23_072713) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "new_ingredient_proposals", "users"
+  add_foreign_key "post_ingredients", "ingredients"
+  add_foreign_key "post_ingredients", "posts"
   add_foreign_key "posts", "genres"
   add_foreign_key "posts", "users"
 end

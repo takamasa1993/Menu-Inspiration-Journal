@@ -6,6 +6,9 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_one_attached :image
 
+  has_many :post_ingredients, dependent: :destroy
+  has_many :ingredients, through: :post_ingredients
+
   validates :menu_title, presence: true
   validates :genre, presence: true
   validates :energy, presence: true, numericality: { greater_than_or_equal_to: 0 }
@@ -21,6 +24,6 @@ class Post < ApplicationRecord
   validates :dietary_fiber, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :salt, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :notes, length: { maximum: 500 }
-  
 
+  accepts_nested_attributes_for :post_ingredients, allow_destroy: true
 end

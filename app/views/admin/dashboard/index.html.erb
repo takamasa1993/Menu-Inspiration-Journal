@@ -1,10 +1,9 @@
-<!-- app/views/admin/dashboard/index.html.erb -->
 <h1>管理者ダッシュボード</h1>
 <p>ここでは管理者としての操作を行えます。</p>
 
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">ユーザー管理画面</h5>
@@ -13,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">ジャンル編集画面</h5>
@@ -22,12 +21,21 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card text-center">
         <div class="card-body">
-          <h5 class="card-title">新材料提案管理画面</h5>
+          <h5 class="card-title">登録済み材料</h5>
+          <p class="card-text">登録されている材料を管理します。</p>
+          <%= link_to '登録済み材料', admin_ingredients_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">新材料提案管理</h5>
           <p class="card-text">ユーザーからの新しい材料提案を管理します。</p>
-          <%= link_to '新材料提案管理', admin_ingredients_path, class: 'btn btn-primary' %>
+          <%= link_to '新材料提案管理', admin_new_ingredient_proposals_path, class: 'btn btn-primary' %>
         </div>
       </div>
     </div>

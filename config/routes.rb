@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'user/homes#top'
 
   devise_for :users, controllers: {
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
     end
 
     resources :searches, only: [:index]
-    
+
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'genre_posts'
   end
 
@@ -52,7 +51,13 @@ Rails.application.routes.draw do
       resources :posts, only: [:index, :show, :edit, :update, :destroy]
     end
     resources :genres, except: [:show]
-    resources :ingredients, only: [:index, :show, :update]
+    resources :ingredients, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :new_ingredient_proposals, only: [:index, :update, :destroy] do
+      member do
+        patch :approve
+        patch :reject
+      end
+    end
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'admin_genre_posts'
   end
 end
