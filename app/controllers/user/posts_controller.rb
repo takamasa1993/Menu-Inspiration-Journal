@@ -8,6 +8,8 @@ class User::PostsController < ApplicationController
   end
 
   def show
+    @user = @post.user
+    @is_following = current_user.following?(@user)
   end
 
   def new

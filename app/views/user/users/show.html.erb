@@ -19,6 +19,12 @@
             <li class="list-group-item">
               <strong>メールアドレス:</strong> <%= @user.email %>
             </li>
+            <li class="list-group-item">
+              <%= link_to 'フォロー中', following_user_path(@user), class: 'btn btn-primary w-100' %>
+            </li>
+            <li class="list-group-item">
+              <strong>フォロワー:</strong> <%= @user.followers.count %>
+            </li>
           </ul>
         </div>
       </div>

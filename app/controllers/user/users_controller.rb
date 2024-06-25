@@ -1,11 +1,11 @@
+# app/controllers/user/users_controller.rb
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :liked_posts, :following]
 
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-
   end
 
   def edit
@@ -25,6 +25,14 @@ class User::UsersController < ApplicationController
     @user = current_user
     @user.destroy
     redirect_to root_path, notice: 'アカウントが削除されました。'
+  end
+  
+  def liked_posts
+    @liked_posts = @user.liked_posts
+  end
+
+  def following
+    @following_users = @user.following
   end
 
   private

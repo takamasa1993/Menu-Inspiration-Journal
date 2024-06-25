@@ -1,0 +1,20 @@
+<!-- app/views/user/users/following.html.erb -->
+<% provide(:title, 'フォロー中のユーザー') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4">フォロー中のユーザー</h2>
+
+  <div class="row">
+    <% @following_users.each do |user| %>
+      <div class="col-md-2 mb-2">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title"><%= user.name %></h5>
+            <p><%= user.nickname %></p>
+            <%= link_to 'プロフィールを見る', user_path(user), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

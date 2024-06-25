@@ -1,10 +1,36 @@
+<!-- app/views/user/posts/show.html.erb -->
 <% provide(:title, @post.menu_title) %>
 
 <div class="container mt-5">
   <h2 class="text-center mb-4"><%= @post.menu_title %></h2>
 
-  <div class="row justify-content-center">
-    <div class="col-md-8">
+  <div class="row">
+    <!-- サイドバー -->
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+              <strong>ニックネーム:</strong> <%= @user.nickname %>
+            </li>
+            <li class="list-group-item">
+              <strong>メールアドレス:</strong> <%= @user.email %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-3">
+        <% if @is_following %>
+          <%= link_to 'フォロー解除', unfollow_user_path(@post.user), method: :delete, class: 'btn btn-danger w-100' %>
+        <% else %>
+          <%= link_to 'フォローする', follow_user_path(@post.user), method: :post, class: 'btn btn-success w-100' %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="col-md-9">
       <div class="card">
         <div class="card-body">
           <% if @post.image.attached? %>
@@ -95,39 +121,39 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="text-center mt-4">
-    <p>いいねの合計数: <%= @post.likes.count %></p>
-    <% if current_user.likes.exists?(post: @post) %>
-      <%= link_to 'いいねを取り消す', post_likes_path(@post), method: :delete, class: 'btn btn-danger' %>
-    <% else %>
-      <%= link_to 'いいね', post_likes_path(@post), method: :post, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+      <div class="text-center mt-4">
+        <p>いいねの合計数: <%= @post.likes.count %></p>
+        <% if current_user.likes.exists?(post: @post) %>
+          <%= link_to 'いいねを取り消す', post_likes_path(@post), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'いいね', post_likes_path(@post), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
 
-  <div class="row mt-5">
-    <div class="col-md-8">
-      <h3>コメント</h3>
-      <% @post.comments.each do |comment| %>
-        <div class="card mt-2">
-          <div class="card-body">
-            <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
-            <% if comment.user == current_user %>
-              <%= link_to '削除', post_comment_path(@post, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: 'btn btn-sm btn-danger' %>
-            <% end %>
-          </div>
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <h3>コメント</h3>
+          <% @post.comments.each do |comment| %>
+            <div class="card mt-2">
+              <div class="card-body">
+                <p><strong><%= comment.user.name %>:</strong> <%= comment.content %></p>
+                <% if comment.user == current_user %>
+                  <%= link_to '削除', post_comment_path(@post, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: 'btn btn-sm btn-danger' %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
+          <h4 class="mt-4">コメントを追加</h4>
+          <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+            <div class="form-group">
+              <%= form.text_area :content, class: 'form-control', rows: 4, placeholder: 'コメントを入力してください' %>
+            </div>
+            <%= form.submit 'コメントを追加', class: 'btn btn-primary' %>
+          <% end %>
         </div>
-      <% end %>
-
-      <h4 class="mt-4">コメントを追加</h4>
-      <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
-        <div class="form-group">
-          <%= form.text_area :content, class: 'form-control', rows: 4, placeholder: 'コメントを入力してください' %>
-        </div>
-        <%= form.submit 'コメントを追加', class: 'btn btn-primary' %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

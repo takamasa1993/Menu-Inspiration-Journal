@@ -13,9 +13,7 @@ Rails.application.routes.draw do
 
   scope module: :user do
     get 'about', to: 'homes#about', as: 'about'
-
     resources :homes
-
     resources :users, only: [:show, :edit, :update, :destroy] do
       collection do
         get 'my_page', to: 'users#show'
@@ -25,16 +23,16 @@ Rails.application.routes.draw do
         patch 'withdraw', to: 'users#withdraw'
       end
       member do
-        post 'follow', to: 'follows#create'
-        delete 'unfollow', to: 'follows#destroy'
+        get 'liked_posts', to: 'users#liked_posts'
+        post 'follow', to: 'user_follows#create', as: 'follow'
+        delete 'unfollow', to: 'user_follows#destroy', as: 'unfollow'
+        get :following, :followers
       end
     end
-
     resources :posts do
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-
     resources :searches, only: [:index]
     resources :ingredients, only: [:new, :create]
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'genre_posts'

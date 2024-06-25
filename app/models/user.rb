@@ -1,10 +1,33 @@
+# app/models/user.rb
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   has_many :new_ingredient_proposals, dependent: :destroy
-  
+
+  # フォロー機能
+  has_many :active_relationships, class_name: 'UserFollow', foreign_key: 'follower_id', dependent: :destroy
+  has_many :passive_relationships, class_name: 'UserFollow', foreign_key: 'followed_id', dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # フォローする
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  # フォローを外す
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # すでにフォローしているか確認
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  # Devise の設定
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
