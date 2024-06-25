@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     end
 
     resources :searches, only: [:index]
-
+    resources :ingredients, only: [:new, :create]
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'genre_posts'
   end
 
@@ -54,8 +54,8 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :new_ingredient_proposals, only: [:index, :update, :destroy] do
       member do
-        patch :approve
-        patch :reject
+        patch :approve, to: 'new_ingredient_proposals#update', defaults: { status: 'approved' }
+        patch :reject, to: 'new_ingredient_proposals#update', defaults: { status: 'rejected' }
       end
     end
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'admin_genre_posts'

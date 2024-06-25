@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">新材料提案</h2>
+  <%= form_with(model: @new_ingredient_proposal, url: ingredients_path, local: true) do |form| %>
+    <% if @new_ingredient_proposal.errors.any? %>
+      <div class="alert alert-danger">
+        <h4>エラーが発生しました：</h4>
+        <ul>
+          <% @new_ingredient_proposal.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group row">
+      <div class="col-sm-3" style="text-align: right;">
+        <%= form.label :name, '<strong style="font-size: 1.6em;">新規材料名</strong>'.html_safe %>
+      </div>
+      <div class="col-sm-7">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.submit '提案する', class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
+  <h3 class="mt-5">提案された材料一覧</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>提案者</th>
+        <th>材料名</th>
+        <th>ステータス</th>
+        <th>提案日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @new_ingredient_proposals.each do |proposal| %>
+        <tr>
+          <td><%= proposal.user.name %></td>
+          <td><%= proposal.name %></td>
+          <td><%= proposal.status_in_japanese %></td>
+          <td><%= proposal.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

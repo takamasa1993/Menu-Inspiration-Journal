@@ -21,7 +21,6 @@ class User::PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      handle_new_ingredients(@post)
       redirect_to post_path(@post), notice: 'レシピが投稿されました。'
     else
       @ingredients = Ingredient.all
@@ -35,7 +34,6 @@ class User::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      handle_new_ingredients(@post)
       redirect_to post_path(@post), notice: 'レシピが更新されました。'
     else
       @ingredients = Ingredient.all
@@ -67,15 +65,5 @@ class User::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:menu_title, :genre_id, :image, :energy, :protein, :fat, :calcium, :iron, :zinc, :vitamin_a, :vitamin_b1, :vitamin_b2, :vitamin_c, :dietary_fiber, :salt, :notes, :is_public, post_ingredients_attributes: [:id, :ingredient_id, :quantity, :_destroy])
-  end
-
-  def handle_new_ingredients(post)
-    new_ingredient_names = params[:post][:new_ingredients].reject(&:blank?)
-    new_ingredient_names.each do |name|
-      unless Ingredient.exists?(name: name)
-        NewIngredientProposal.create(user: current_user, name: name)
-        post.update(is_public: false) if post.is_public
-      end
-    end
   end
 end

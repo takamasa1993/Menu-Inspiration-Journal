@@ -27,6 +27,11 @@
               <% end %>
             </li>
             <li class="nav-item">
+              <%= link_to new_ingredient_path, class: 'nav-link border p-2 mx-1' do %>
+                <i class="fas fa-seedling"></i> 新材料提案
+              <% end %>
+            </li>
+            <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link border p-2 mx-1' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
@@ -45,12 +50,12 @@
             </li>
             <li class="nav-item">
               <%= link_to admin_ingredients_path, class: 'nav-link border p-2 mx-1' do %>
-                <i class="fas fa-seedling"></i> 登録済み材料
+                <i class="fas fa-leaf"></i> 材料管理
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to admin_new_ingredient_proposals_path, class: 'nav-link border p-2 mx-1' do %>
-                <i class="fas fa-file-alt"></i> 新材料提案管理
+                <i class="fas fa-seedling"></i> 新材料提案管理
               <% end %>
             </li>
             <li class="nav-item">

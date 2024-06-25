@@ -3,30 +3,36 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">新材料提案管理</h2>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>提案者</th>
-        <th>材料名</th>
-        <th>提案日時</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @new_ingredient_proposals.each do |proposal| %>
+  <% if @new_ingredient_proposals.any? %>
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td><%= proposal.id %></td>
-          <td><%= proposal.user.name %></td>
-          <td><%= proposal.name %></td>
-          <td><%= proposal.created_at %></td>
-          <td>
-            <%= link_to '承認', approve_admin_new_ingredient_proposal_path(proposal), method: :patch, class: 'btn btn-success btn-sm' %>
-            <%= link_to '拒否', reject_admin_new_ingredient_proposal_path(proposal), method: :patch, class: 'btn btn-danger btn-sm' %>
-            <%= link_to '削除', admin_new_ingredient_proposal_path(proposal), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-warning btn-sm' %>
-          </td>
+          <th>ID</th>
+          <th>提案者</th>
+          <th>材料名</th>
+          <th>提案日時</th>
+          <th>操作</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @new_ingredient_proposals.each do |proposal| %>
+          <tr>
+            <td><%= proposal.id %></td>
+            <td><%= proposal.user.name %></td>
+            <td><%= proposal.name %></td>
+            <td><%= proposal.created_at %></td>
+            <td>
+              <%= form_with(model: proposal, url: admin_new_ingredient_proposal_path(proposal), method: :patch, local: true) do |form| %>
+                <%= form.hidden_field :status, value: 'approved' %>
+                <%= form.submit '承認', class: 'btn btn-success btn-sm' %>
+              <% end %>
+              <%= link_to '削除', admin_new_ingredient_proposal_path(proposal), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-warning btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>新しい材料提案はありません。</p>
+  <% end %>
 </div>
