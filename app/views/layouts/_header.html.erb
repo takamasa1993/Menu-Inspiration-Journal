@@ -99,7 +99,8 @@
         </ul>
         <div class="d-flex flex-column align-items-end mt-3 mt-lg-0 ms-lg-3 mt-lg-override">
           <%= form_with(url: searches_path, method: :get, local: true, class: "d-flex mb-2") do |form| %>
-            <%= form.text_field :search, class: "form-control me-2", placeholder: "料理名を入力" %>
+            <%= form.select :type, options_for_select([['料理名', 'menu'], ['ユーザー名', 'user']]), {}, class: "form-select me-2" %>
+            <%= form.text_field :query, class: "form-control me-2", placeholder: "検索キーワードを入力" %>
             <%= form.submit "検索", class: "btn btn-primary" %>
           <% end %>
         </div>

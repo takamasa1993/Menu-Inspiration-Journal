@@ -1,9 +1,14 @@
 class User::SearchesController < ApplicationController
   def index
-    if params[:search].blank?
-      @posts = Post.none
+    @query = params[:query]
+    @type = params[:type]
+
+    if @type == "menu"
+      @results = Post.where('menu_title LIKE ?', "%#{@query}%")
+    elsif @type == "user"
+      @results = User.where('name LIKE ?', "%#{@query}%")
     else
-      @posts = Post.where('menu_title LIKE ?', "%#{params[:search]}%").where(is_public: true)
+      @results = []
     end
   end
 end

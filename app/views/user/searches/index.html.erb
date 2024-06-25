@@ -1,29 +1,40 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">検索結果</h2>
 
-  <%= form_with(url: searches_path, method: :get, local: true, class: "d-flex justify-content-center mb-4") do |form| %>
-    <%= form.text_field :search, class: "form-control me-2", placeholder: "料理名を入力", style: "width: 300px;" %>
-    <%= form.submit "検索", class: "btn btn-primary" %>
-  <% end %>
-
-  <div class="row">
-    <% if @posts.any? %>
-      <% @posts.each do |post| %>
+  <% if @type == 'menu' %>
+    <h3 class="mb-4">料理名での検索結果</h3>
+    <div class="row">
+      <% @results.each do |post| %>
         <div class="col-md-2 mb-2">
-          <div class="card">
+          <div class="card text-center">
             <% if post.image.attached? %>
-              <%= image_tag post.image.variant(resize_to_fit: [300, 200]), class: 'card-img-top' %>
+              <%= image_tag post.image.variant(resize_to_fit: [300, 200]), class: "card-img-top" %>
             <% end %>
             <div class="card-body">
-              <h5 class="card-title"><%= post.menu_title %></h5>
-              <p class="card-text">いいね: <%= post.likes.count %></p>
-              <%= link_to '詳細を見る', post_path(post), class: 'btn btn-primary' %>
+              <h5 class="card-title"><%= link_to post.menu_title, post_path(post) %></h5>
+              <p class="card-text">ジャンル: <%= post.genre.name %></p>
+              <p class="card-text">いいね数: <%= post.likes.count %></p>
+              <%= link_to '詳細', post_path(post), class: 'btn btn-primary' %>
             </div>
           </div>
         </div>
       <% end %>
-    <% else %>
-      <p class="text-center">検索結果が見つかりませんでした。</p>
-    <% end %>
-  </div>
+    </div>
+  <% elsif @type == 'user' %>
+    <h3 class="mb-4">ユーザー名での検索結果</h3>
+    <div class="row">
+      <% @results.each do |user| %>
+        <div class="col-md-2 mb-2">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
+              <p class="card-text">ニックネーム: <%= user.nickname %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>検索結果がありません。</p>
+  <% end %>
 </div>

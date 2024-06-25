@@ -37,7 +37,12 @@ Rails.application.routes.draw do
       resource :likes, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :searches, only: [:index]
+    resources :searches, only: [:index] do
+      collection do
+        get 'search_by_name'
+        get 'search_by_user'
+      end
+    end
     resources :ingredients, only: [:new, :create]
     get 'genres/:id/posts', to: 'posts#by_genre', as: 'genre_posts'
   end
