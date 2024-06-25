@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
+  devise_scope :user do
+    post 'guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
+
   scope module: :user do
     get 'about', to: 'homes#about', as: 'about'
     resources :homes

@@ -27,6 +27,16 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = "ゲストユーザー"
+      user.nickname = "ゲスト"
+    end
+  end
+
+
   # Devise の設定
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
