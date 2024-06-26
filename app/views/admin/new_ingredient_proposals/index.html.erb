@@ -11,6 +11,7 @@
           <th>提案者</th>
           <th>材料名</th>
           <th>提案日時</th>
+          <th>ステータス</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -21,10 +22,13 @@
             <td><%= proposal.user.name %></td>
             <td><%= proposal.name %></td>
             <td><%= proposal.created_at %></td>
+            <td><%= proposal.status_in_japanese %></td>
             <td>
-              <%= form_with(model: proposal, url: admin_new_ingredient_proposal_path(proposal), method: :patch, local: true) do |form| %>
-                <%= form.hidden_field :status, value: 'approved' %>
-                <%= form.submit '承認', class: 'btn btn-success btn-sm' %>
+              <% if proposal.status == "pending" %>
+                <%= form_with(model: proposal, url: admin_new_ingredient_proposal_path(proposal), method: :patch, local: true) do |form| %>
+                  <%= form.hidden_field :status, value: 'approved' %>
+                  <%= form.submit '承認', class: 'btn btn-success btn-sm' %>
+                <% end %>
               <% end %>
               <%= link_to '削除', admin_new_ingredient_proposal_path(proposal), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-warning btn-sm' %>
             </td>

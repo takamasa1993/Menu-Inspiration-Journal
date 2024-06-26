@@ -2,7 +2,7 @@ class Admin::NewIngredientProposalsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @new_ingredient_proposals = NewIngredientProposal.where(status: :pending)
+    @new_ingredient_proposals = NewIngredientProposal.where(status: 'pending')
   end
 
   def update
@@ -13,7 +13,7 @@ class Admin::NewIngredientProposalsController < ApplicationController
       end
       redirect_to admin_new_ingredient_proposals_path, notice: '材料提案のステータスが更新されました。'
     else
-      @new_ingredient_proposals = NewIngredientProposal.where(status: :pending)
+      @new_ingredient_proposals = NewIngredientProposal.where(status: 'pending')
       render :index
     end
   end
