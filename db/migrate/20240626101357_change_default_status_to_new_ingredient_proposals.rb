@@ -1,9 +1,9 @@
-class ChangeDefaultStatusToNewIngredientProposals < ActiveRecord::Migration[6.1]
+class ChangeStatusColumnTypeInNewIngredientProposals < ActiveRecord::Migration[6.1]
   def up
-    execute "ALTER TABLE new_ingredient_proposals ALTER COLUMN status SET DEFAULT 'pending'"
+    change_column :new_ingredient_proposals, :status, :string, default: 'pending'
   end
 
   def down
-    execute "ALTER TABLE new_ingredient_proposals ALTER COLUMN status DROP DEFAULT"
+    change_column :new_ingredient_proposals, :status, :integer, default: 0, null: false
   end
 end
