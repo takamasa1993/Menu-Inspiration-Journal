@@ -2,26 +2,43 @@
   <div class="row">
     <!-- メインコンテンツ -->
     <div class="col-md-6" id="main-content">
-
-
       <!-- 新着メニュー -->
       <div class="mt-4">
         <h3>新着メニュー</h3>
-        <div class="row">
-          <% @latest_posts.each do |post| %>
-            <div class="col-md-6 mb-4">
-              <div class="card">
-                <% if post.image.attached? %>
-                  <%= image_tag post.image.variant(resize_to_fit: [150, 150]), class: "card-img-top" %>
+        <% @latest_posts_by_genre.each do |genre_name, posts| %>
+          <div class="genre-section mb-4">
+            <h4><%= genre_name %></h4>
+            <div id="carousel-<%= genre_name %>" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <% posts.each_slice(3).with_index do |post_slice, index| %>
+                  <div class="carousel-item <%= 'active' if index == 0 %>">
+                    <div class="d-flex justify-content-center">
+                      <% post_slice.each do |post| %>
+                        <div class="card mx-2" style="width: 18rem;">
+                          <% if post.image.attached? %>
+                            <%= image_tag post.image.variant(resize_to_fit: [150, 150]), class: "card-img-top" %>
+                          <% end %>
+                          <div class="card-body text-center">
+                            <h5 class="card-title"><%= post.menu_title %></h5>
+                            <%= link_to '詳細', post_path(post), class: 'btn btn-primary btn-sm' %>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
                 <% end %>
-                <div class="card-body text-center">
-                  <h5 class="card-title"><%= post.menu_title %></h5>
-                  <%= link_to '詳細', post_path(post), class: 'btn btn-primary btn-sm' %>
-                </div>
               </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<%= genre_name %>" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carousel-<%= genre_name %>" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -1,9 +1,8 @@
 class User::HomesController < ApplicationController
   def top
     @genres = Genre.all
-    @latest_posts = Post.order(created_at: :desc).limit(4)
-  end
-
-  def about
+    @latest_posts_by_genre = Genre.joins(:posts).distinct.map do |genre|
+      [genre.name, genre.posts.order(created_at: :desc).limit(9)]
+    end.to_h
   end
 end
