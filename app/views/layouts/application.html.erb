@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MenuInspirationJournal</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>献立SNS</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= render 'layouts/header' %>
+<body>
+  <%= render 'layouts/header' %>
+  <div id="sidebar-left">
+    <%= render 'layouts/left_sidebar' %>
+  </div>
+  <div id="main-content">
     <%= yield %>
-  </body>
+  </div>
+  <div id="sidebar-right">
+    <%= render 'layouts/right_sidebar' %>
+  </div>
+</body>
 </html>

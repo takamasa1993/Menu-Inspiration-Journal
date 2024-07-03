@@ -1,0 +1,10 @@
+<div class="sticky-top" style="top: 56px;">
+  <h3 class="mb-3">ジャンル検索</h3>
+  <ul class="list-group">
+    <% @genres.each do |genre| %>
+      <li class="list-group-item">
+        <%= link_to genre.name, genre_posts_path(genre), class: 'text-decoration-none' %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -8,102 +8,100 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <% if user_signed_in? %>
             <!-- ユーザーログイン後 -->
             <li class="nav-item">
-              <%= link_to user_path(current_user), class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to user_path(current_user), class: 'nav-link' do %>
                 <i class="fas fa-user"></i> マイページ
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to posts_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to posts_path, class: 'nav-link' do %>
                 <i class="fas fa-list"></i> 投稿一覧
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_post_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to new_post_path, class: 'nav-link' do %>
                 <i class="fas fa-plus"></i> 新規投稿
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_ingredient_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to new_ingredient_path, class: 'nav-link' do %>
                 <i class="fas fa-seedling"></i> 新材料提案
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to liked_posts_user_path(current_user), class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to liked_posts_user_path(current_user), class: 'nav-link' do %>
                 <i class="fas fa-heart"></i> いいねした投稿
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
           <% elsif admin_signed_in? %>
             <!-- アドミンログイン後 -->
             <li class="nav-item">
-              <%= link_to admin_users_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to admin_users_path, class: 'nav-link' do %>
                 <i class="fas fa-users-cog"></i> ユーザー管理画面
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to admin_genres_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to admin_genres_path, class: 'nav-link' do %>
                 <i class="fas fa-tags"></i> ジャンル
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to admin_ingredients_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to admin_ingredients_path, class: 'nav-link' do %>
                 <i class="fas fa-leaf"></i> 材料管理
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to admin_new_ingredient_proposals_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to admin_new_ingredient_proposals_path, class: 'nav-link' do %>
                 <i class="fas fa-seedling"></i> 新材料提案管理
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to admin_root_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to admin_root_path, class: 'nav-link' do %>
                 <i class="fas fa-tachometer-alt"></i> ダッシュボード
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
                 <i class="fas fa-sign-out-alt"></i> ログアウト
               <% end %>
             </li>
           <% else %>
             <!-- ユーザーログイン前 -->
             <li class="nav-item">
-              <%= link_to about_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to about_path, class: 'nav-link' do %>
                 <i class="fas fa-info-circle"></i> アバウト
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_user_session_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to new_user_session_path, class: 'nav-link' do %>
                 <i class="fas fa-sign-in-alt"></i> ログイン
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to new_user_registration_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to new_user_registration_path, class: 'nav-link' do %>
                 <i class="fas fa-user-plus"></i> 新規登録
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to posts_path, class: 'nav-link border p-2 mx-1' do %>
+              <%= link_to posts_path, class: 'nav-link' do %>
                 <i class="fas fa-list"></i> 投稿一覧
               <% end %>
             </li>
           <% end %>
         </ul>
-        <div class="d-flex flex-column align-items-end mt-3 mt-lg-0 ms-lg-3 mt-lg-override">
-          <%= form_with(url: searches_path, method: :get, local: true, class: "d-flex mb-2") do |form| %>
-            <%= form.select :type, options_for_select([['料理名', 'menu'], ['ユーザー名', 'user']]), {}, class: "form-select me-2" %>
-            <%= form.text_field :query, class: "form-control me-2", placeholder: "検索キーワードを入力" %>
-            <%= form.submit "検索", class: "btn btn-primary" %>
-          <% end %>
-        </div>
+        <%= form_with(url: searches_path, method: :get, local: true, class: "d-flex") do |form| %>
+          <%= form.select :type, options_for_select([['料理名', 'menu'], ['ユーザー名', 'user']]), {}, class: "form-select me-2" %>
+          <%= form.text_field :query, class: "form-control me-2", placeholder: "検索キーワードを入力" %>
+          <%= form.submit "検索", class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </nav>

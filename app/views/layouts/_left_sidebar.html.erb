@@ -1,0 +1,11 @@
+<div class="sticky-top" style="top: 56px;">
+  <% if user_signed_in? %>
+    <div class="card mb-3">
+      <div class="card-body text-center">
+        <h5 class="card-title"><%= current_user.name %>さん</h5>
+        <p class="card-text">こんにちは！</p>
+        <%= link_to 'プロフィール', user_path(current_user), class: 'btn btn-primary btn-sm' %>
+      </div>
+    </div>
+  <% end %>
+</div>

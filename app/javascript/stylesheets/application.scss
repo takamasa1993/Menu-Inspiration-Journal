@@ -24,3 +24,43 @@ header .navbar-toggler {
   margin-left: auto;
 }
 
+header {
+  z-index: 1030; /* ヘッダーを最前面に */
+  position: fixed; /* ヘッダーを固定 */
+  width: 100%;
+  top: 0;
+  background-color: #fff; /* ヘッダーの背景色を設定 */
+  border-bottom: 1px solid #ddd; /* ヘッダーの下に境界線を追加 */
+}
+
+#sidebar-left, #sidebar-right {
+  position: fixed;
+  height: calc(100% - 56px); /* ヘッダーの高さ分を引いた高さ */
+  overflow-y: auto;
+  top: 56px; /* ヘッダーの高さ分 */
+  background-color: #f8f9fa; /* サイドバーの背景色を設定 */
+}
+
+#sidebar-left {
+  width: 20%;
+  left: 0;
+  z-index: 1020; /* ヘッダーより後ろ */
+}
+
+#sidebar-right {
+  width: 20%;
+  right: 0;
+  z-index: 1020; /* ヘッダーより後ろ */
+}
+
+#main-content {
+  margin-left: 20%;
+  margin-right: 20%;
+  overflow-y: auto;
+  height: calc(100vh - 56px); /* ヘッダーの高さ分を引いた高さ */
+  padding-top: 56px; /* ヘッダーの高さ分のパディングを追加 */
+}
+
+body {
+  overflow: hidden; /* 全体のスクロールを無効化 */
+}

@@ -1,48 +1,27 @@
 <div class="container mt-5">
   <div class="row">
-    <!-- サイドバー：ジャンル検索 -->
-    <div class="col-md-3">
-      <h3>ジャンル検索</h3>
-      <ul class="list-group">
-        <% @genres.each do |genre| %>
-          <li class="list-group-item">
-            <%= link_to genre.name, genre_posts_path(genre) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
     <!-- メインコンテンツ -->
-    <div class="col-md-9">
-      <!-- 給食画像とテキスト -->
-      <div class="row">
-        <div class="col-12 text-center">
-          <%= image_tag 'top-kyusyoku.png', alt: 'LOGO', class: 'img-fluid', style: 'max-width: 50%;' %>
-          <p class="mt-4">
-            献立のひらめき帳へようこそ！<br>
-            このサイトは、献立を考えるときの”ヒント”を共有するためのサイトです！<br>
-            献立の核となる部分のみを登録・共有することで、日々の献立作業を円滑に進められます！<br>
-            また、自分用のメモ帳としてもご使用になれます！！
-          </p>
-        </div>
-      </div>
+    <div class="col-md-6" id="main-content">
 
-      <!-- 新着商品 -->
-      <div class="row mt-4">
-        <h3 class="col-12">新着メニュー</h3>
-        <% @latest_posts.each do |post| %>
-          <div class="col-md-3">
-            <div class="card text-center">
-              <% if post.image.attached? %>
-                <%= image_tag post.image.variant(resize_to_fit: [100, 100]), class: "card-img-top mx-auto" %>
-              <% end %>
-              <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                <h5 class="card-title"><%= post.menu_title %></h5>
-                <%= link_to '詳細', post_path(post), class: 'btn btn-primary' %>
+
+      <!-- 新着メニュー -->
+      <div class="mt-4">
+        <h3>新着メニュー</h3>
+        <div class="row">
+          <% @latest_posts.each do |post| %>
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <% if post.image.attached? %>
+                  <%= image_tag post.image.variant(resize_to_fit: [150, 150]), class: "card-img-top" %>
+                <% end %>
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= post.menu_title %></h5>
+                  <%= link_to '詳細', post_path(post), class: 'btn btn-primary btn-sm' %>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
