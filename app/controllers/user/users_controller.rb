@@ -1,4 +1,3 @@
-# app/controllers/user/users_controller.rb
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy, :liked_posts, :following]
@@ -42,6 +41,6 @@ class User::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :nickname, :email, :password, :password_confirmation, :image)
   end
 end

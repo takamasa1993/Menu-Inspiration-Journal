@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # 画像添付
+  has_one_attached :image
+
   # フォローする
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
@@ -33,9 +36,9 @@ class User < ApplicationRecord
       user.password_confirmation = user.password
       user.name = "ゲストユーザー"
       user.nickname = "ゲスト"
+      user.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image.jpg')), filename: 'no_image.jpg', content_type: 'image/jpg')
     end
   end
-
 
   # Devise の設定
   devise :database_authenticatable, :registerable,
