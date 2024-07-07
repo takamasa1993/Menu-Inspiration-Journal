@@ -9,7 +9,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// Turbolinksがロードされた後に実行される関数
 document.addEventListener("turbolinks:load", () => {
   // .add_fieldsクラスの要素にイベントリスナーを追加
   document.querySelectorAll('.add_fields').forEach(button => {
@@ -44,12 +43,16 @@ document.addEventListener("turbolinks:load", () => {
   if (toggleNutritionButton) {
     toggleNutritionButton.addEventListener('click', function() {
       var moreNutrition = document.getElementById('more-nutrition');
-      if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
-        moreNutrition.style.display = 'block';
-        this.textContent = '隠す';
+      if (moreNutrition) {
+        if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
+          moreNutrition.style.display = 'block';
+          this.textContent = '隠す';
+        } else {
+          moreNutrition.style.display = 'none';
+          this.textContent = 'もっと見る';
+        }
       } else {
-        moreNutrition.style.display = 'none';
-        this.textContent = 'もっと見る';
+        console.error("#more-nutritionが見つかりません");
       }
     });
   } else {
