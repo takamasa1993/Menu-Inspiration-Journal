@@ -21,8 +21,12 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    tags = Vision.get_image_data(post_params[:image])
 
     if @post.save
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to post_path(@post), notice: 'レシピが投稿されました。'
     else
       @ingredients = Ingredient.all

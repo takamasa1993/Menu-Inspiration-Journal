@@ -80,3 +80,37 @@ body {
   max-width: 18rem; /* 最大幅を18remに設定 */
   margin: auto;
 }
+
+.table-responsive {
+  margin-bottom: 20px;
+}
+
+.tag-box {
+  margin-top: 20px;
+}
+
+.label {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #d9e8fc;
+  color: #333;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.table th, .table td {
+  white-space: nowrap;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table td {
+  background-color: #fff;
+}
+
+.table td {
+  vertical-align: middle;
+}

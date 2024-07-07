@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_26_103331) do
+ActiveRecord::Schema.define(version: 2024_07_07_080039) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -126,6 +126,14 @@ ActiveRecord::Schema.define(version: 2024_06_26_103331) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_tags_on_post_id"
+  end
+
   create_table "user_follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -158,4 +166,5 @@ ActiveRecord::Schema.define(version: 2024_06_26_103331) do
   add_foreign_key "post_ingredients", "posts"
   add_foreign_key "posts", "genres"
   add_foreign_key "posts", "users"
+  add_foreign_key "tags", "posts"
 end

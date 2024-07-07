@@ -1,6 +1,3 @@
-<!-- app/views/user/posts/show.html.erb -->
-<% provide(:title, @post.menu_title) %>
-
 <div class="container mt-5">
   <h2 class="text-center mb-4"><%= @post.menu_title %></h2>
 
@@ -10,7 +7,6 @@
       <div class="card">
         <div class="card-body p-0">
           <ul class="list-group list-group-flush">
-
             <li class="list-group-item">
               <strong>ニックネーム:</strong> <%= @user.nickname %>
             </li>
@@ -40,76 +36,90 @@
           <% end %>
 
           <div class="table-responsive">
-            <table class="table table-bordered">
-              <tbody>
+            <table class="table table-bordered text-center">
+              <thead>
                 <tr>
                   <th>ジャンル</th>
-                  <td><%= @post.genre.name %></td>
-                </tr>
-                <tr>
                   <th>エネルギー (kcal)</th>
-                  <td><%= @post.energy %></td>
-                </tr>
-                <tr>
                   <th>タンパク質 (g)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @post.genre.name %></td>
+                  <td><%= @post.energy %></td>
                   <td><%= @post.protein %></td>
                 </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="more-nutrition" class="table-responsive" style="display: none;">
+            <table class="table table-bordered text-center">
+              <tbody>
                 <tr>
                   <th>脂質 (g)</th>
-                  <td><%= @post.fat %></td>
-                </tr>
-                <tr>
                   <th>カルシウム (mg)</th>
-                  <td><%= @post.calcium %></td>
+                  <th>鉄 (mg)</th>
                 </tr>
                 <tr>
-                  <th>鉄 (mg)</th>
+                  <td><%= @post.fat %></td>
+                  <td><%= @post.calcium %></td>
                   <td><%= @post.iron %></td>
                 </tr>
                 <tr>
                   <th>亜鉛 (mg)</th>
-                  <td><%= @post.zinc %></td>
-                </tr>
-                <tr>
                   <th>ビタミンA (μg)</th>
-                  <td><%= @post.vitamin_a %></td>
+                  <th>ビタミンB1 (mg)</th>
                 </tr>
                 <tr>
-                  <th>ビタミンB1 (mg)</th>
+                  <td><%= @post.zinc %></td>
+                  <td><%= @post.vitamin_a %></td>
                   <td><%= @post.vitamin_b1 %></td>
                 </tr>
                 <tr>
                   <th>ビタミンB2 (mg)</th>
-                  <td><%= @post.vitamin_b2 %></td>
-                </tr>
-                <tr>
                   <th>ビタミンC (mg)</th>
-                  <td><%= @post.vitamin_c %></td>
+                  <th>食物繊維 (g)</th>
                 </tr>
                 <tr>
-                  <th>食物繊維 (g)</th>
+                  <td><%= @post.vitamin_b2 %></td>
+                  <td><%= @post.vitamin_c %></td>
                   <td><%= @post.dietary_fiber %></td>
                 </tr>
                 <tr>
                   <th>食塩 (g)</th>
-                  <td><%= @post.salt %></td>
                 </tr>
                 <tr>
-                  <th>材料</th>
-                  <td>
-                    <ul>
-                      <% @post.post_ingredients.each do |post_ingredient| %>
-                        <li><%= post_ingredient.ingredient.name %> - <%= post_ingredient.quantity %></li>
-                      <% end %>
-                    </ul>
-                  </td>
-                </tr>
-                <tr>
-                  <th>その他の情報</th>
-                  <td><%= simple_format @post.notes %></td>
+                  <td colspan="3"><%= @post.salt %></td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          <div class="text-center">
+            <button id="toggle-nutrition" class="btn btn-secondary">もっと見る</button>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <h5>材料</h5>
+              <ul>
+                <% @post.post_ingredients.each do |post_ingredient| %>
+                  <li><%= post_ingredient.ingredient.name %> - <%= post_ingredient.quantity %></li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h5>その他の情報</h5>
+              <p><%= simple_format @post.notes %></p>
+            </div>
+          </div>
+
+          <div class="tag-box mt-4">
+            <% @post.tags.each do |tag| %>
+              <span class="label"><%= tag.name %></span>
+            <% end %>
           </div>
 
           <div class="text-center mt-4">

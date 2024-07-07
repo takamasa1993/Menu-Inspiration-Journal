@@ -10,7 +10,7 @@ module Portfolio
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
+    config.paths.add 'lib', eager_load: true
     # Add this line to set the default locale to Japanese
     config.i18n.default_locale = :ja
 

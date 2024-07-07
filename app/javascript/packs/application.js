@@ -38,3 +38,16 @@ document.addEventListener("turbolinks:load", () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('toggle-nutrition').addEventListener('click', function () {
+    var moreNutrition = document.getElementById('more-nutrition');
+    if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
+      moreNutrition.style.display = 'block';
+      this.textContent = '隠す';
+    } else {
+      moreNutrition.style.display = 'none';
+      this.textContent = 'もっと見る';
+    }
+  });
+});
