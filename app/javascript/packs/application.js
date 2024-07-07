@@ -1,5 +1,3 @@
-// app/javascript/packs/application.js
-
 import 'bootstrap'
 import "../stylesheets/application"
 import Rails from "@rails/ujs"
@@ -11,7 +9,9 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// Turbolinksがロードされた後に実行される関数
 document.addEventListener("turbolinks:load", () => {
+  // .add_fieldsクラスの要素にイベントリスナーを追加
   document.querySelectorAll('.add_fields').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
@@ -26,6 +26,7 @@ document.addEventListener("turbolinks:load", () => {
     });
   });
 
+  // .remove_fieldsクラスの要素にイベントリスナーを追加
   document.addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('remove_fields')) {
       e.preventDefault();
@@ -37,17 +38,21 @@ document.addEventListener("turbolinks:load", () => {
       }
     }
   });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('toggle-nutrition').addEventListener('click', function () {
-    var moreNutrition = document.getElementById('more-nutrition');
-    if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
-      moreNutrition.style.display = 'block';
-      this.textContent = '隠す';
-    } else {
-      moreNutrition.style.display = 'none';
-      this.textContent = 'もっと見る';
-    }
-  });
+  // #toggle-nutrition要素にイベントリスナーを追加
+  const toggleNutritionButton = document.getElementById('toggle-nutrition');
+  if (toggleNutritionButton) {
+    toggleNutritionButton.addEventListener('click', function() {
+      var moreNutrition = document.getElementById('more-nutrition');
+      if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
+        moreNutrition.style.display = 'block';
+        this.textContent = '隠す';
+      } else {
+        moreNutrition.style.display = 'none';
+        this.textContent = 'もっと見る';
+      }
+    });
+  } else {
+    console.error("#toggle-nutritionが見つかりません");
+  }
 });
