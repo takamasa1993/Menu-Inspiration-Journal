@@ -1,3 +1,5 @@
+// app/javascript/packs/application.js
+
 import 'bootstrap'
 import "../stylesheets/application"
 import Rails from "@rails/ujs"
@@ -10,7 +12,6 @@ Turbolinks.start()
 ActiveStorage.start()
 
 document.addEventListener("turbolinks:load", () => {
-  // .add_fieldsクラスの要素にイベントリスナーを追加
   document.querySelectorAll('.add_fields').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
@@ -25,7 +26,6 @@ document.addEventListener("turbolinks:load", () => {
     });
   });
 
-  // .remove_fieldsクラスの要素にイベントリスナーを追加
   document.addEventListener('click', function(e) {
     if (e.target && e.target.classList.contains('remove_fields')) {
       e.preventDefault();
@@ -37,4 +37,5 @@ document.addEventListener("turbolinks:load", () => {
       }
     }
   });
+});
 
