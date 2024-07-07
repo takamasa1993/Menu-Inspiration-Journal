@@ -32,6 +32,11 @@ module Vision
       request = Net::HTTP::Post.new(uri.request_uri)
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
+
+      # デバッグ用のログを追加
+      Rails.logger.info("Vision API request params: #{params}")
+      Rails.logger.info("Vision API response: #{response.body}")
+
       response_body = JSON.parse(response.body)
 
       # APIレスポンス出力
@@ -40,7 +45,7 @@ module Vision
       elsif response_body['responses'] && response_body['responses'][0]['labelAnnotations']
         response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
       else
-        raise "Unexpected response structure from Vision API"
+        raise "Unexpected response structure from Vision API: #{response.body}"
       end
     end
   end
