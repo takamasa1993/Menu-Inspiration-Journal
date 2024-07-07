@@ -42,7 +42,29 @@ document.addEventListener("turbolinks:load", () => {
   const toggleNutritionButton = document.getElementById('toggle-nutrition');
   if (toggleNutritionButton) {
     toggleNutritionButton.addEventListener('click', function() {
-      var moreNutrition = document.getElementById('more-nutrition');
+      const moreNutrition = document.getElementById('more-nutrition');
+      if (moreNutrition) {
+        if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
+          moreNutrition.style.display = 'block';
+          this.textContent = '隠す';
+        } else {
+          moreNutrition.style.display = 'none';
+          this.textContent = 'もっと見る';
+        }
+      } else {
+        console.error("#more-nutritionが見つかりません");
+      }
+    });
+  } else {
+    console.error("#toggle-nutritionが見つかりません");
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleNutritionButton = document.getElementById('toggle-nutrition');
+  if (toggleNutritionButton) {
+    toggleNutritionButton.addEventListener('click', function() {
+      const moreNutrition = document.getElementById('more-nutrition');
       if (moreNutrition) {
         if (moreNutrition.style.display === 'none' || moreNutrition.style.display === '') {
           moreNutrition.style.display = 'block';
