@@ -33,11 +33,14 @@ module Vision
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
+
       # APIレスポンス出力
-      if (error = response_body['responses'][0]['error']).present?
-        raise error['message']
-      else
+      if response_body['responses'] && response_body['responses'][0]['error']
+        raise "Vision API Error: #{response_body['responses'][0]['error']['message']}"
+      elsif response_body['responses'] && response_body['responses'][0]['labelAnnotations']
         response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
+      else
+        raise "Unexpected response structure from Vision API"
       end
     end
   end

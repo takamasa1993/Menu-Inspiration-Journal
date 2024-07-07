@@ -21,7 +21,14 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    tags = Vision.get_image_data(post_params[:image])
+
+    begin
+      tags = Vision.get_image_data(post_params[:image])
+    rescue => e
+      flash[:alert] = "画像処理中にエラーが発生しました: #{e.message}"
+      @ingredients = Ingredient.all
+      render :new and return
+    end
 
     if @post.save
       tags.each do |tag|
