@@ -43,7 +43,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 # ソケットバインドの設定
-bind "unix://#{File.expand_path('tmp/sockets/puma.sock', __dir__)}"
+bind "unix://#{File.expand_path('../tmp/sockets/puma.sock', __dir__)}"
 
 # Rails rootの設定
 rails_root = File.expand_path('../', __dir__)
