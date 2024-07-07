@@ -42,6 +42,9 @@
                   <th>ジャンル</th>
                   <th>エネルギー (kcal)</th>
                   <th>タンパク質 (g)</th>
+                  <th>脂質 (g)</th>
+                  <th>カルシウム (mg)</th>
+                  <th>鉄 (mg)</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,56 +52,34 @@
                   <td><%= @post.genre.name %></td>
                   <td><%= @post.energy %></td>
                   <td><%= @post.protein %></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div id="more-nutrition" class="table-responsive" style="display: none;">
-            <table class="table table-bordered text-center">
-              <tbody>
-                <tr>
-                  <th>脂質 (g)</th>
-                  <th>カルシウム (mg)</th>
-                  <th>鉄 (mg)</th>
-                </tr>
-                <tr>
                   <td><%= @post.fat %></td>
                   <td><%= @post.calcium %></td>
                   <td><%= @post.iron %></td>
                 </tr>
+              </tbody>
+              <thead>
                 <tr>
                   <th>亜鉛 (mg)</th>
                   <th>ビタミンA (μg)</th>
                   <th>ビタミンB1 (mg)</th>
+                  <th>ビタミンB2 (mg)</th>
+                  <th>ビタミンC (mg)</th>
+                  <th>食物繊維 (g)</th>
+                  <th>食塩 (g)</th>
                 </tr>
+              </thead>
+              <tbody>
                 <tr>
                   <td><%= @post.zinc %></td>
                   <td><%= @post.vitamin_a %></td>
                   <td><%= @post.vitamin_b1 %></td>
-                </tr>
-                <tr>
-                  <th>ビタミンB2 (mg)</th>
-                  <th>ビタミンC (mg)</th>
-                  <th>食物繊維 (g)</th>
-                </tr>
-                <tr>
                   <td><%= @post.vitamin_b2 %></td>
                   <td><%= @post.vitamin_c %></td>
                   <td><%= @post.dietary_fiber %></td>
-                </tr>
-                <tr>
-                  <th>食塩 (g)</th>
-                </tr>
-                <tr>
-                  <td colspan="3"><%= @post.salt %></td>
+                  <td><%= @post.salt %></td>
                 </tr>
               </tbody>
             </table>
-          </div>
-
-          <div class="text-center">
-            <button id="toggle-nutrition" class="btn btn-secondary">もっと見る</button>
           </div>
 
           <div class="row mt-4">
