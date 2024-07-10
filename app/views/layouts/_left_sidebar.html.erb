@@ -4,8 +4,11 @@
     <% if current_user.image.attached? %>
       <%= image_tag current_user.image.variant(resize_to_fit: [150, 150]), class: "img-fluid rounded-circle" %>
     <% end %>
-    <p>名前: <%= current_user.name %></p>
+    <p>ニックネーム: <%= current_user.nickname %></p>
     <p>メール: <%= current_user.email %></p>
+    <p>フォロワー数: <%= current_user.followers.count %></p>
+    <%= link_to 'フォロー一覧', following_user_path(current_user), class: 'btn btn-primary mt-2' %>
+    <%= link_to 'フォロワー一覧', followers_user_path(current_user), class: 'btn btn-secondary mt-2' %>
   <% else %>
     <h3>ゲストユーザー</h3>
   <% end %>

@@ -1,10 +1,14 @@
 class User::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :liked_posts, :following]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :liked_posts, :following, :followers]
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = if params[:genre_id].present?
+               @user.posts.where(genre_id: params[:genre_id])
+             else
+               @user.posts
+             end
   end
 
   def edit
@@ -32,6 +36,10 @@ class User::UsersController < ApplicationController
 
   def following
     @following_users = @user.following
+  end
+
+  def followers
+    @followers_users = @user.followers
   end
 
   private

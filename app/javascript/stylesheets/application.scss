@@ -3,6 +3,8 @@
 @import "user/posts";
 @import "user/users";
 @import "user/homes";
+@import 'user/followers';
+@import 'user/following';
 
 @media (min-width: 992px) {
   .mt-lg-override {

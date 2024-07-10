@@ -1,12 +1,12 @@
-<% provide(:title, 'フォロー中のユーザー') %>
+<% provide(:title, 'Followers') %>
 
 <div class="container mt-5">
   <h2 class="mb-4">フォロー中のユーザー</h2>
 
   <div class="row">
-    <% @following_users.each do |user| %>
+    <% @followers_users.each do |user| %>
       <div class="col-md-4 mb-3">
-        <div class="card following-card">
+        <div class="card followers-card">
           <div class="card-body text-center">
             <% if user.image.attached? %>
               <%= image_tag user.image.variant(resize_to_fit: [100, 100]), class: "img-fluid" %>

@@ -11,3 +11,14 @@
   object-fit: cover;
   margin: 0 auto;
 }
+
+.form-inline {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .form-control {
+    width: auto;
+    max-width: 100%;
+  }
+}
