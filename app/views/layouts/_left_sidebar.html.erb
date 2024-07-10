@@ -1,6 +1,9 @@
 <div class="sticky-top">
   <% if user_signed_in? %>
     <h3>ユーザー情報</h3>
+    <% if current_user.image.attached? %>
+      <%= image_tag current_user.image.variant(resize_to_fit: [150, 150]), class: "img-fluid rounded-circle" %>
+    <% end %>
     <p>名前: <%= current_user.name %></p>
     <p>メール: <%= current_user.email %></p>
   <% else %>
