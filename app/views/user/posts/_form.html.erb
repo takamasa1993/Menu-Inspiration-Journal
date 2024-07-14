@@ -11,129 +11,90 @@
     </div>
   <% end %>
 
-  <div class="form-group row">
-    <%= form.label :menu_title, '料理名', class: 'col-sm-3 col-form-label', for: 'post_menu_title' %>
-    <div class="col-sm-9">
-      <%= form.text_field :menu_title, id: 'post_menu_title', class: 'form-control' %>
+  <div class="container mb-3">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <%= form.label :menu_title, '料理名' %>
+        <%= form.text_field :menu_title, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :genre_id, 'ジャンル' %>
+        <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'ジャンルを選択してください' }, { class: 'form-control' } %>
+      </div>
+      <div class="form-group col-md-4">
+        <%= form.label :image, '料理の画像' %>
+        <%= form.file_field :image, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <%= form.label :genre_id, 'ジャンル', class: 'col-sm-3 col-form-label', for: 'post_genre_id' %>
-    <div class="col-sm-9">
-      <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'ジャンルを選択してください' }, { id: 'post_genre_id', class: 'form-control' } %>
+    <div class="row">
+      <div class="form-group col-md-2">
+        <%= form.label :energy, 'エネルギー (kcal)' %>
+        <%= form.number_field :energy, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :protein, 'タンパク質 (g)' %>
+        <%= form.number_field :protein, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :fat, '脂質 (g)' %>
+        <%= form.number_field :fat, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :salt, '食塩 (g)' %>
+        <%= form.number_field :salt, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :calcium, 'カルシウム (mg)' %>
+        <%= form.number_field :calcium, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :iron, '鉄 (mg)' %>
+        <%= form.number_field :iron, step: 0.1, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <%= form.label :image, '料理の画像', class: 'col-sm-3 col-form-label', for: 'post_image' %>
-    <div class="col-sm-9">
-      <%= form.file_field :image, id: 'post_image', class: 'form-control' %>
+    <div class="row">
+      <div class="form-group col-md-2">
+        <%= form.label :zinc, '亜鉛 (mg)' %>
+        <%= form.number_field :zinc, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :vitamin_a, 'ビタミンA (μg)' %>
+        <%= form.number_field :vitamin_a, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :vitamin_b1, 'ビタミンB1 (mg)' %>
+        <%= form.number_field :vitamin_b1, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :vitamin_b2, 'ビタミンB2 (mg)' %>
+        <%= form.number_field :vitamin_b2, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :vitamin_c, 'ビタミンC (mg)' %>
+        <%= form.number_field :vitamin_c, step: 0.1, class: 'form-control' %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form.label :dietary_fiber, '食物繊維 (g)' %>
+        <%= form.number_field :dietary_fiber, step: 0.1, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <%= form.label :energy, 'エネルギー (kcal)', class: 'col-sm-3 col-form-label', for: 'post_energy' %>
-    <div class="col-sm-9">
-      <%= form.number_field :energy, step: 0.1, id: 'post_energy', class: 'form-control' %>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <%= form.label :notes, 'その他の情報' %>
+        <%= form.text_area :notes, rows: 3, class: 'form-control' %>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <%= form.label :protein, 'タンパク質 (g)', class: 'col-sm-3 col-form-label', for: 'post_protein' %>
-    <div class="col-sm-9">
-      <%= form.number_field :protein, step: 0.1, id: 'post_protein', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :fat, '脂質 (g)', class: 'col-sm-3 col-form-label', for: 'post_fat' %>
-    <div class="col-sm-9">
-      <%= form.number_field :fat, step: 0.1, id: 'post_fat', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :calcium, 'カルシウム (mg)', class: 'col-sm-3 col-form-label', for: 'post_calcium' %>
-    <div class="col-sm-9">
-      <%= form.number_field :calcium, step: 0.1, id: 'post_calcium', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :iron, '鉄 (mg)', class: 'col-sm-3 col-form-label', for: 'post_iron' %>
-    <div class="col-sm-9">
-      <%= form.number_field :iron, step: 0.1, id: 'post_iron', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :zinc, '亜鉛 (mg)', class: 'col-sm-3 col-form-label', for: 'post_zinc' %>
-    <div class="col-sm-9">
-      <%= form.number_field :zinc, step: 0.1, id: 'post_zinc', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :vitamin_a, 'ビタミンA (μg)', class: 'col-sm-3 col-form-label', for: 'post_vitamin_a' %>
-    <div class="col-sm-9">
-      <%= form.number_field :vitamin_a, step: 0.1, id: 'post_vitamin_a', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :vitamin_b1, 'ビタミンB1 (mg)', class: 'col-sm-3 col-form-label', for: 'post_vitamin_b1' %>
-    <div class="col-sm-9">
-      <%= form.number_field :vitamin_b1, step: 0.1, id: 'post_vitamin_b1', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :vitamin_b2, 'ビタミンB2 (mg)', class: 'col-sm-3 col-form-label', for: 'post_vitamin_b2' %>
-    <div class="col-sm-9">
-      <%= form.number_field :vitamin_b2, step: 0.1, id: 'post_vitamin_b2', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :vitamin_c, 'ビタミンC (mg)', class: 'col-sm-3 col-form-label', for: 'post_vitamin_c' %>
-    <div class="col-sm-9">
-      <%= form.number_field :vitamin_c, step: 0.1, id: 'post_vitamin_c', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :dietary_fiber, '食物繊維 (g)', class: 'col-sm-3 col-form-label', for: 'post_dietary_fiber' %>
-    <div class="col-sm-9">
-      <%= form.number_field :dietary_fiber, step: 0.1, id: 'post_dietary_fiber', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :salt, '食塩 (g)', class: 'col-sm-3 col-form-label', for: 'post_salt' %>
-    <div class="col-sm-9">
-      <%= form.number_field :salt, step: 0.1, id: 'post_salt', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :notes, 'その他の情報', class: 'col-sm-3 col-form-label', for: 'post_notes' %>
-    <div class="col-sm-9">
-      <%= form.text_area :notes, rows: 5, id: 'post_notes', class: 'form-control' %>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <%= form.label :is_public, '公開設定', class: 'col-sm-3 col-form-label', for: 'post_is_public' %>
-    <div class="col-sm-9">
-      <%= form.check_box :is_public, id: 'post_is_public', class: 'form-check-input' %>
+    <div class="form-group form-check">
+      <%= form.check_box :is_public, class: 'form-check-input' %>
       <%= form.label :is_public, '公開する', class: 'form-check-label' %>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <%= form.label :ingredients, '材料', class: 'col-sm-3 col-form-label' %>
-    <div class="col-sm-9">
+    <div class="form-group">
+      <%= form.label :ingredients, '材料' %>
       <div class="fields-container">
         <%= form.fields_for :post_ingredients do |ingredient_form| %>
           <div class="nested-fields">
@@ -143,10 +104,8 @@
       </div>
       <%= link_to_add_fields '材料を追加', form, :post_ingredients %>
     </div>
-  </div>
-  
-  <div class="form-group row">
-    <div class="col-sm-12 text-center">
+
+    <div class="form-group text-center">
       <%= form.submit '投稿', class: 'btn btn-primary' %>
     </div>
   </div>
