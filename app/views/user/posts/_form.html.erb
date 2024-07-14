@@ -11,88 +11,96 @@
     </div>
   <% end %>
 
-  <div class="container mb-3">
-    <div class="row">
-      <div class="form-group col-md-4">
+  <div class="new-post-form">
+    <!-- 料理名、ジャンル、料理の画像 -->
+    <div class="form-group-inline top-section d-flex">
+      <div class="form-group" style="flex: 1;">
         <%= form.label :menu_title, '料理名' %>
         <%= form.text_field :menu_title, class: 'form-control' %>
       </div>
-      <div class="form-group col-md-4">
+
+      <div class="form-group" style="flex: 1;">
         <%= form.label :genre_id, 'ジャンル' %>
-        <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'ジャンルを選択してください' }, { class: 'form-control' } %>
+        <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'ジャンルを選択' }, { class: 'form-control genre-select' } %>
       </div>
-      <div class="form-group col-md-4">
+
+      <div class="form-group" style="flex: 1;">
         <%= form.label :image, '料理の画像' %>
-        <%= form.file_field :image, class: 'form-control' %>
+        <%= form.file_field :image, class: 'form-control', id: 'post_image', style: 'width: 100%;' %>
+      </div>
+
+      <div class="form-group" style="flex: 1;">
+        <%= image_tag 'no_image.jpg', id: 'image_preview', class: 'img-thumbnail mt-2', size: '100x100' %>
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group col-md-2">
-        <%= form.label :energy, 'エネルギー (kcal)' %>
-        <%= form.number_field :energy, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :protein, 'タンパク質 (g)' %>
-        <%= form.number_field :protein, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :fat, '脂質 (g)' %>
-        <%= form.number_field :fat, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :salt, '食塩 (g)' %>
-        <%= form.number_field :salt, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :calcium, 'カルシウム (mg)' %>
-        <%= form.number_field :calcium, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :iron, '鉄 (mg)' %>
-        <%= form.number_field :iron, step: 0.1, class: 'form-control' %>
+    <!-- 栄養価 -->
+    <div class="nutrition-facts">
+      <h4>栄養価</h4>
+      <div class="form-group-inline">
+        <div class="form-group">
+          <%= form.label :energy, 'エネルギー (kcal)' %>
+          <%= form.number_field :energy, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :protein, 'タンパク質 (g)' %>
+          <%= form.number_field :protein, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :fat, '脂質 (g)' %>
+          <%= form.number_field :fat, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :calcium, 'カルシウム (mg)' %>
+          <%= form.number_field :calcium, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :iron, '鉄 (mg)' %>
+          <%= form.number_field :iron, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :zinc, '亜鉛 (mg)' %>
+          <%= form.number_field :zinc, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :vitamin_a, 'ビタミンA (μg)' %>
+          <%= form.number_field :vitamin_a, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :vitamin_b1, 'ビタミンB1 (mg)' %>
+          <%= form.number_field :vitamin_b1, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :vitamin_b2, 'ビタミンB2 (mg)' %>
+          <%= form.number_field :vitamin_b2, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :vitamin_c, 'ビタミンC (mg)' %>
+          <%= form.number_field :vitamin_c, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :dietary_fiber, '食物繊維 (g)' %>
+          <%= form.number_field :dietary_fiber, step: 0.1, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :salt, '食塩 (g)' %>
+          <%= form.number_field :salt, step: 0.1, class: 'form-control' %>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group col-md-2">
-        <%= form.label :zinc, '亜鉛 (mg)' %>
-        <%= form.number_field :zinc, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :vitamin_a, 'ビタミンA (μg)' %>
-        <%= form.number_field :vitamin_a, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :vitamin_b1, 'ビタミンB1 (mg)' %>
-        <%= form.number_field :vitamin_b1, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :vitamin_b2, 'ビタミンB2 (mg)' %>
-        <%= form.number_field :vitamin_b2, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :vitamin_c, 'ビタミンC (mg)' %>
-        <%= form.number_field :vitamin_c, step: 0.1, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-2">
-        <%= form.label :dietary_fiber, '食物繊維 (g)' %>
-        <%= form.number_field :dietary_fiber, step: 0.1, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group col-md-12">
-        <%= form.label :notes, 'その他の情報' %>
-        <%= form.text_area :notes, rows: 3, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group form-check">
-      <%= form.check_box :is_public, class: 'form-check-input' %>
-      <%= form.label :is_public, '公開する', class: 'form-check-label' %>
-    </div>
-
+    <!-- 材料 -->
     <div class="form-group">
       <%= form.label :ingredients, '材料' %>
       <div class="fields-container">
@@ -105,7 +113,22 @@
       <%= link_to_add_fields '材料を追加', form, :post_ingredients %>
     </div>
 
-    <div class="form-group text-center">
+    <div class="form-group-inline">
+      <!-- その他の情報 -->
+      <div class="form-group" style="flex: 2;">
+        <%= form.label :notes, 'その他の情報' %>
+        <%= form.text_area :notes, rows: 3, class: 'form-control' %>
+      </div>
+
+      <!-- 公開設定 -->
+      <div class="form-group form-check" style="flex: 1; align-self: center;">
+        <%= form.check_box :is_public, class: 'form-check-input', style: 'width: 15px; height: 15px;' %>
+        <%= form.label :is_public, '公開する', class: 'form-check-label' %>
+      </div>
+    </div>
+
+    <!-- 投稿ボタン -->
+    <div class="submit-btn">
       <%= form.submit '投稿', class: 'btn btn-primary' %>
     </div>
   </div>

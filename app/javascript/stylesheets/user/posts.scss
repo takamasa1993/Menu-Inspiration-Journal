@@ -10,13 +10,11 @@
   margin-bottom: 10px;
 }
 
-
 .post-image {
   width: 150px;
   height: 150px;
   object-fit: cover;
 }
-
 
 .card-img-top {
   width: 100%;
@@ -24,4 +22,65 @@
   text-align: center;
   display: block;
   margin: 0 auto;
+}
+
+// フォーム全体のスタイル
+.new-post-form {
+  width: 80%;
+  margin: 0 auto;
+
+  .form-group {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control, .form-check-input {
+      width: 100%;
+    }
+  }
+
+  .form-group-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .form-group {
+      flex: 1 1 calc(33.3333% - 1rem);
+
+      @media (max-width: 768px) {
+        flex: 1 1 100%;
+      }
+    }
+  }
+
+  .top-section {
+    .form-group {
+      flex: 1 1 30%;
+    }
+
+    .genre-select {
+      width: auto;
+      min-width: fit-content;
+    }
+  }
+
+  .nutrition-facts {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    h4 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .submit-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
 }
