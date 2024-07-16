@@ -1,0 +1,10 @@
+var postId = '<%= @post.id %>';
+var likesCountElement = document.querySelector('#likes-count-' + postId);
+likesCountElement.innerText = '<%= @post.likes.count %>';
+
+var likeButton = document.querySelector('.like-button[data-post-id="' + postId + '"]');
+likeButton.classList.remove('btn-danger');
+likeButton.classList.add('btn-primary');
+likeButton.innerText = 'いいね';
+likeButton.setAttribute('href', '<%= post_likes_path(@post) %>');
+likeButton.setAttribute('data-method', 'post');

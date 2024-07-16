@@ -1,0 +1,9 @@
+<% if current_user.following?(user) %>
+  <%= form_with url: unfollow_user_path(user), method: :delete, local: false do |form| %>
+    <%= form.submit 'フォロー解除', class: 'btn btn-danger', id: "unfollow-button-#{user.id}" %>
+  <% end %>
+<% else %>
+  <%= form_with url: follow_user_path(user), method: :post, local: false do |form| %>
+    <%= form.submit 'フォローする', class: 'btn btn-primary', id: "follow-button-#{user.id}" %>
+  <% end %>
+<% end %>

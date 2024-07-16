@@ -7,6 +7,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../packs/image_preview';
+import '../packs/like_post';
+import '../packs/follow';
+import $ from 'jquery';
+
+global.$ = $;
+global.jQuery = $;
 
 Rails.start()
 Turbolinks.start()

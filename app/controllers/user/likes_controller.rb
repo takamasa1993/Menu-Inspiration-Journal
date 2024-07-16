@@ -6,9 +6,13 @@ class User::LikesController < ApplicationController
     @like = @post.likes.build(user: current_user)
 
     if @like.save
-      redirect_to request.referer, notice: 'いいねしました。'
+      respond_to do |format|
+        format.js
+      end
     else
-      redirect_to request.referer, alert: 'いいねできませんでした。'
+      respond_to do |format|
+        format.js { render js: "alert('いいねできませんでした。');" }
+      end
     end
   end
 
@@ -17,9 +21,13 @@ class User::LikesController < ApplicationController
     @like = @post.likes.find_by(user: current_user)
 
     if @like.destroy
-      redirect_to request.referer, notice: 'いいねを取り消しました。'
+      respond_to do |format|
+        format.js
+      end
     else
-      redirect_to request.referer, alert: 'いいねを取り消せませんでした。'
+      respond_to do |format|
+        format.js { render js: "alert('いいねを取り消せませんでした。');" }
+      end
     end
   end
 end

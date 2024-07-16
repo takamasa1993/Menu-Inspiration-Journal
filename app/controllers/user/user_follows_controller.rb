@@ -1,15 +1,24 @@
 class User::UserFollowsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def create
-    user = User.find(params[:id])
-    current_user.follow(user)
-    redirect_back(fallback_location: root_path, notice: 'フォローしました。')
+    current_user.follow(@user)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
-    user = User.find(params[:id])
-    current_user.unfollow(user)
-    redirect_back(fallback_location: root_path, notice: 'フォローを解除しました。')
+    current_user.unfollow(@user)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end
