@@ -3,10 +3,6 @@
 import 'bootstrap'
 import "../stylesheets/application"
 import "../stylesheets/user/homes.scss"
-import "../stylesheets/user/posts.scss"
-import "../stylesheets/user/users.scss"
-import "../stylesheets/user/followers.scss"
-import "../stylesheets/user/following.scss"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
