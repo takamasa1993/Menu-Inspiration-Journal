@@ -1,5 +1,5 @@
 <!-- app/views/user/posts/_form.html.erb -->
-<%= form_with(model: @post, local: true, html: { enctype: "multipart/form-data" }) do |form| %>
+<%= form_with(model: @post, local: true, html: { enctype: "multipart/form-data", data: { turbolinks: false } }) do |form| %>
   <% if @post.errors.any? %>
     <div class="alert alert-danger">
       <h4>エラーが発生しました：</h4>
@@ -15,22 +15,22 @@
     <!-- 料理名、ジャンル、料理の画像 -->
     <div class="form-group-inline top-section d-flex">
       <div class="form-group" style="flex: 1;">
-        <%= form.label :menu_title, '料理名' %>
-        <%= form.text_field :menu_title, class: 'form-control' %>
+        <%= form.label :menu_title, '料理名', for:'post_menu_title' %>
+        <%= form.text_field :menu_title, class: 'form-control', id:'post_menu_title' %>
       </div>
 
       <div class="form-group" style="flex: 1;">
-        <%= form.label :genre_id, 'ジャンル' %>
-        <%= form.collection_select :genre_id, Genre.all, :id, :name, { prompt: 'ジャンルを選択' }, { class: 'form-control genre-select' } %>
+        <%= form.label :genre_id, 'ジャンル', for: 'post_genre_id' %>
+        <%= form.collection_select :genre_id, Genre.all, :id,:name, { prompt: 'ジャンルを選択' }, { class: 'form-control genre-select', id:'post_genre_id' } %>
       </div>
 
       <div class="form-group" style="flex: 1;">
-        <%= form.label :image, '料理の画像' %>
-        <%= form.file_field :image, class: 'form-control', id: 'post_image', style: 'width: 100%;' %>
+        <%= form.label :image, '料理の画像', for:'post_image' %>
+        <%= form.file_field :image, class: 'form-control', id:'post_image', style: 'width: 100%;' %>
       </div>
 
       <div class="form-group" style="flex: 1;">
-        <%= image_tag 'no_image.jpg', id: 'image_preview', class: 'img-thumbnail mt-2', size: '100x100' %>
+        <%= image_tag 'no_image.jpg', id:'image_preview', class: 'img-thumbnail mt-2', size: '100x100' %>
       </div>
     </div>
 
