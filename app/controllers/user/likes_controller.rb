@@ -7,10 +7,12 @@ class User::LikesController < ApplicationController
 
     if @like.save
       respond_to do |format|
+        format.html { redirect_to request.referer, notice: 'いいねしました。' }
         format.js
       end
     else
       respond_to do |format|
+        format.html { redirect_to request.referer, alert: 'いいねできませんでした。' }
         format.js { render js: "alert('いいねできませんでした。');" }
       end
     end
@@ -22,10 +24,12 @@ class User::LikesController < ApplicationController
 
     if @like.destroy
       respond_to do |format|
+        format.html { redirect_to request.referer, notice: 'いいねを取り消しました。' }
         format.js
       end
     else
       respond_to do |format|
+        format.html { redirect_to request.referer, alert: 'いいねを取り消せませんでした。' }
         format.js { render js: "alert('いいねを取り消せませんでした。');" }
       end
     end
