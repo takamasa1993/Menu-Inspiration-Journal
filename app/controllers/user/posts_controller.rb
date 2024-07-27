@@ -62,7 +62,7 @@ class User::PostsController < ApplicationController
 
   def by_genre
     @genre = Genre.find(params[:id])
-    @posts = @genre.posts
+    @posts = @genre.posts.where(is_public: true)
   end
 
   private
