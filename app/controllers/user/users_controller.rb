@@ -3,7 +3,6 @@ class User::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :liked_posts, :following, :followers]
 
   def show
-    @user = User.find(params[:id])
     @posts = if params[:genre_id].present?
                @user.posts.where(genre_id: params[:genre_id])
              else
