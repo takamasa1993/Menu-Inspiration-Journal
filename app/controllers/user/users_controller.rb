@@ -4,9 +4,9 @@ class User::UsersController < ApplicationController
 
   def show
     @posts = if params[:genre_id].present?
-               @user.posts.where(genre_id: params[:genre_id])
+               @user.posts.where(genre_id: params[:genre_id], is_public: true)
              else
-               @user.posts
+               @user.posts.where(is_public: true)
              end
   end
 
