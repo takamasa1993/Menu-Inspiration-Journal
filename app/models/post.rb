@@ -27,4 +27,8 @@ class Post < ApplicationRecord
   validates :notes, length: { maximum: 500 }
 
   accepts_nested_attributes_for :post_ingredients, allow_destroy: true
+  
+  def self.search_by_title(query)
+    where('menu_title LIKE ?', "%#{query}%").where(is_public: true)
+  end
 end
